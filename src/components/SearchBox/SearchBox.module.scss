@@ -1,0 +1,65 @@
+@import 'src/styles/_variable.scss';
+
+.searchBox {
+	position: relative;
+
+	.box {
+		position: relative;
+		border-radius: 42px;
+		background-color: #fff;
+		box-shadow: $box-shadow;
+		overflow: hidden;
+
+		.icon {
+			position: absolute;
+			top: 0;
+			right: 0;
+			width: 64px;
+			height: 100%;
+			z-index: 2;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			background-color: $bg-color-light;
+			border-radius: 42px;
+		}
+
+		.input {
+			outline: none;
+			border: none;
+			width: 100%;
+			font-size: 16px;
+			line-height: 20px;
+			padding: 11px 72px 11px 16px;
+			color: $text-color;
+
+			&::placeholder {
+				color: $text-placeholder;
+			}
+		}
+	}
+
+	.suggest {
+		position: absolute;
+		top: 50px;
+		left: 0;
+		z-index: 1;
+		width: 100%;
+		border-radius: 8px;
+		overflow: hidden;
+		box-shadow: $box-shadow;
+
+		.item {
+			font-size: 16px;
+			line-height: 20px;
+			color: $text-color;
+			padding: 8px 16px;
+			background-color: #fff;
+			cursor: pointer;
+
+			&:hover {
+				background-color: $bg-color-light;
+			}
+		}
+	}
+}

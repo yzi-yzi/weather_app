@@ -1,0 +1,29 @@
+@import 'src/styles/_variable.scss';
+
+.cardItem {
+	width: 74px;
+	height: 90px;
+	border-radius: 8px;
+	background-color: #fff;
+	border: 1px solid $border-color;
+	padding: 4px 8px;
+	text-align: center;
+
+	.icon {
+		width: 24px;
+		margin-bottom: 8px;
+	}
+
+	.temp {
+		color: $text-color;
+		font-size: 13px;
+		line-height: 20px;
+		margin-bottom: 8px;
+	}
+
+	.time {
+		color: $text-light-color;
+		font-size: 12px;
+		line-height: 16px;
+	}
+}
