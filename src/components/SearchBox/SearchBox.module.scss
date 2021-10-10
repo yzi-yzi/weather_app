@@ -1,4 +1,5 @@
 @import 'src/styles/_variable.scss';
+@import 'src/styles/_mixin.scss';
 
 .searchBox {
 	position: relative;
@@ -9,6 +10,7 @@
 		background-color: #fff;
 		box-shadow: $box-shadow;
 		overflow: hidden;
+		z-index: 10;
 
 		.icon {
 			position: absolute;
@@ -43,11 +45,15 @@
 		position: absolute;
 		top: 50px;
 		left: 0;
-		z-index: 1;
+		z-index: 10;
 		width: 100%;
 		border-radius: 8px;
 		overflow: hidden;
 		box-shadow: $box-shadow;
+		max-height: 200px;
+		overflow-y: auto;
+		background-color: #fff;
+		@include customScrollbar;
 
 		.item {
 			font-size: 16px;
@@ -57,7 +63,7 @@
 			background-color: #fff;
 			cursor: pointer;
 
-			&:hover {
+			&:hover, &.highlight {
 				background-color: $bg-color-light;
 			}
 		}

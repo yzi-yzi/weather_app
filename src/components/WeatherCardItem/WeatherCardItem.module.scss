@@ -2,23 +2,35 @@
 
 .cardItem {
 	width: 74px;
-	height: 90px;
+	height: 92px;
 	border-radius: 8px;
 	background-color: #fff;
 	border: 1px solid $border-color;
-	padding: 4px 8px;
+	padding: 8px;
 	text-align: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+	cursor: pointer;
+	user-select: none;
 
-	.icon {
+	&.active {
+		background-color: $bg-color-light;
+	}
+
+	> * {
+		pointer-events: none;
+	}
+
+	img {
 		width: 24px;
-		margin-bottom: 8px;
 	}
 
 	.temp {
 		color: $text-color;
 		font-size: 13px;
 		line-height: 20px;
-		margin-bottom: 8px;
 	}
 
 	.time {

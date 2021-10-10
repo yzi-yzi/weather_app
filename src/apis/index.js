@@ -1,2 +1,2 @@
-export { getLocation } from './getLocation';
+export { getLocationData } from './getLocationData';
 export { getWeatherData } from './getWeatherData';

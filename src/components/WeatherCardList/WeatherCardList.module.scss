@@ -1,0 +1,79 @@
+@import 'src/styles/_variable.scss';
+
+.cardList {
+	padding: 24px;
+	box-shadow: $box-shadow;
+	border-radius: 8px;
+	background-color: #fff;
+	margin-top: 24px;
+
+	.location {
+		font-size: 14px;
+		line-height: 16px;
+		color: $text-light-color;
+		margin-bottom: 4px;
+
+		img {
+			margin-right: 4px;
+			width: 12px;
+		}
+	}
+
+	.time {
+		font-size: 12px;
+		line-height: 16px;
+		margin-bottom: 32px;
+		color: $text-light-color;
+	}
+
+	.weatherDetail {
+		display: flex;
+		align-items: center;
+		margin-bottom: 24px;
+
+		img {
+			width: 60px;
+			margin-right: 16px;
+		}
+
+		.temp {
+			color: $text-color;
+			font-size: 28px;
+			line-height: 32px;
+			margin-right: 16px;
+		}
+
+		.state {
+			font-size: 18px;
+			line-height: 24px;
+			color: $text-color;
+		}
+	}
+
+	.moreDetail {
+		margin-bottom: 40px;
+		display: flex;
+
+		.item {
+			margin-right: 24px;
+
+			.property {
+				font-size: 12px;
+				line-height: 16px;
+				color: $text-color;
+			}
+
+			.value {
+				font-size: 12px;
+				line-height: 16px;
+				color: $text-color;
+				font-weight: bold;
+			}
+		}
+	}
+
+	.forecast {
+		display: flex;
+		justify-content: space-between;
+	}
+}
