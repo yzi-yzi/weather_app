@@ -4,7 +4,7 @@ import WeatherCardList from '../WeatherCardList';
 import styles from './App.module.scss';
 import { getWeatherData, getLocationData } from 'src/apis';
 
-function App(props) {
+function App() {
 	const [city, setCity] = useState('');
 	const [forecast, setForecast] = useState([]);
 
@@ -22,6 +22,11 @@ function App(props) {
 			const lattlong = `${latitude},${longitude}`;
 
 			const locationData = await getLocationData({ lattlong });
+
+			if (!locationData || !locationData[0]) {
+				return;
+			}
+
 			const firstCityId = locationData[0].woeid;
 			const firstCity = locationData[0].title;
 

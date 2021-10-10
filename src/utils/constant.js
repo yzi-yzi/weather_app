@@ -1,7 +1,7 @@
 export const URLS = {
-	BASE: 'https://www.metaweather.com/api/',
-	LOCATION: 'https://www.metaweather.com/api/location/',
-	SEARCH_LOCATION: 'https://www.metaweather.com/api/location/search/',
+	BASE: 'https://cors-anywhere.herokuapp.com/https://www.metaweather.com/api/',
+	LOCATION: 'https://cors-anywhere.herokuapp.com/https://www.metaweather.com/api/location/',
+	SEARCH_LOCATION: 'https://cors-anywhere.herokuapp.com/https://www.metaweather.com/api/location/search/',
 	IMAGE: 'https://www.metaweather.com/static/img/weather/'
 };
 
