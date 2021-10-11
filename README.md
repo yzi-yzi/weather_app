@@ -70,7 +70,8 @@ If you want to create a new component, please following the rules:
 
 - `styles/` this folder is for writing the utils scss like `variables` `mixins` or `functions`
 
-- `utils/` this folder incules `constant.js`, the file you can store some constants for using in app. Beside, there are a lot of utils function handler that will be reuse many time in app. Feel free to write your own utils function, just make it more meaning and name it `Camelcase`.
+- `utils/` this folder includes `constant.js`, the file you can store some constants for using in app.\
+Beside, there are a lot of util functions handler that will be reuse many time in app. Feel free to write your own util functions, just make it more meaning and name it `Camelcase`.
 
 #### config/
 
