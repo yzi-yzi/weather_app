@@ -15,8 +15,16 @@ function SearchBox({ onCityChange, city }) {
 	const [highlight, setHighlight] = useState(null);
 	const [cityList, setCityList] = useState(null);
 
+	const isCityAvailable = () => cityList && cityList.length !== 0;
+
 	const handleCitySelected = (index) => {
-		const { woeid, title } = cityList[index];
+		const citySelect = cityList[index];
+
+		if (!citySelect) {
+			return;
+		}
+
+		const { woeid, title } = citySelect;
 
 		setShow(false);
 		setQuery(title);
@@ -24,6 +32,7 @@ function SearchBox({ onCityChange, city }) {
 		if (onCityChange) {
 			onCityChange(woeid);
 			setCityList(null);
+			setHighlight(null);
 		}
 	};
 
@@ -62,6 +71,10 @@ function SearchBox({ onCityChange, city }) {
 	};
 
 	const handleArrowDown = () => {
+		if (!isCityAvailable()) {
+			return;
+		}
+
 		let value = 0;
 
 		if (highlight !== null && highlight !== cityList.length - 1) {
@@ -77,6 +90,10 @@ function SearchBox({ onCityChange, city }) {
 	};
 
 	const handleArrowUp = () => {
+		if (!isCityAvailable()) {
+			return;
+		}
+
 		let value = cityList.length - 1;
 
 		if (highlight) {
@@ -95,8 +112,10 @@ function SearchBox({ onCityChange, city }) {
 	};
 
 	const handleEnter = () => {
-		setShow(false);
-		handleCitySelected(highlight);
+		if (highlight !== null) {
+			setShow(false);
+			handleCitySelected(highlight);
+		}
 	};
 
 	const handleKeyDown = (e) => {
@@ -105,7 +124,7 @@ function SearchBox({ onCityChange, city }) {
 			return;
 		}
 
-		if (e.keyCode === KEYCODE.ENTER && highlight !== null) {
+		if (e.keyCode === KEYCODE.ENTER) {
 			handleEnter();
 			return;
 		}
@@ -146,7 +165,7 @@ function SearchBox({ onCityChange, city }) {
 				/>
 			</div>
 			{
-				show && cityList && cityList.length > 0 && (
+				show && isCityAvailable() && (
 					<div
 						role="presentation"
 						className={styles.suggest}

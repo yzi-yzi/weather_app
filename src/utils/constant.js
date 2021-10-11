@@ -1,7 +1,9 @@
+const CORS_URL = 'https://cors-anywhere.herokuapp.com/';
+
 export const URLS = {
-	BASE: 'https://cors-anywhere.herokuapp.com/https://www.metaweather.com/api/',
-	LOCATION: 'https://cors-anywhere.herokuapp.com/https://www.metaweather.com/api/location/',
-	SEARCH_LOCATION: 'https://cors-anywhere.herokuapp.com/https://www.metaweather.com/api/location/search/',
+	BASE: `${CORS_URL}https://www.metaweather.com/api/`,
+	LOCATION: `${CORS_URL}https://www.metaweather.com/api/location/`,
+	SEARCH_LOCATION: `${CORS_URL}https://www.metaweather.com/api/location/search/`,
 	IMAGE: 'https://www.metaweather.com/static/img/weather/'
 };
 
