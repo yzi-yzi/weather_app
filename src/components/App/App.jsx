@@ -38,8 +38,6 @@ function App() {
 
 			setCity(firstCity);
 			getCityId(firstCityId);
-		}, (error) => {
-			console.log(error);
 		});
 	};
 
@@ -51,9 +49,7 @@ function App() {
 		<div className={styles.app}>
 			<SearchBox onCityChange={getCityId} city={city} />
 			{loading && <Spinner />}
-			{
-				forecast && forecast.length > 0 && <WeatherCardList forecast={forecast} city={city} />
-			}
+			{forecast && forecast.length > 0 && <WeatherCardList forecast={forecast} city={city} />}
 		</div>
 	);
 }

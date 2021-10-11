@@ -41,8 +41,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ### Technology
 
-- `scss` for building styles
-- `React Hooks` for building components
+- `SCSS` for building styles
+- `React Hook` for building components
 - `Jest` for testing functions
 
 ### Project Structure

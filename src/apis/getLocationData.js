@@ -18,8 +18,5 @@ export const getLocationData = (params) => {
 	})
 		.then((res) => res.json())
 		.then((data) => data.splice(0, 50))
-		.catch((error) => {
-			console.log(error);
-			return [];
-		});
+		.catch(() => []);
 };

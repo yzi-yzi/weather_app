@@ -1,10 +1,13 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, {
+	useState, useRef, useEffect, useCallback
+} from 'react';
 import PropTypes from 'prop-types';
 import searchIcon from 'src/images/search.svg';
 import { getLocationData } from 'src/apis';
 import { KEYCODE } from 'src/utils/constant';
 import classNames from 'classnames';
 import { useClickOutside } from 'src/hooks';
+import { debounce } from 'lodash';
 import styles from './SearchBox.module.scss';
 
 function SearchBox({ onCityChange, city }) {
@@ -36,6 +39,15 @@ function SearchBox({ onCityChange, city }) {
 		}
 	};
 
+	const fetchLocation = async (value) => {
+		const locationData = await getLocationData({ query: value });
+
+		setCityList(locationData);
+		setHighlight(null);
+	};
+
+	const debounceFetch = useCallback(debounce((nextValue) => fetchLocation(nextValue), 200), []);
+
 	const onSearchChange = async (e) => {
 		const { value } = e.target;
 
@@ -46,10 +58,7 @@ function SearchBox({ onCityChange, city }) {
 		setShow(true);
 		setQuery(value);
 
-		const locationData = await getLocationData({ query: value });
-
-		setCityList(locationData);
-		setHighlight(null);
+		debounceFetch(value);
 	};
 
 	const handleCityClick = (e) => {

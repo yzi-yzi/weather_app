@@ -1,4 +1,4 @@
-const CORS_URL = 'https://cors-anywhere.herokuapp.com/';
+const CORS_URL = 'https://cors-anywhere-nab.herokuapp.com/';
 
 export const URLS = {
 	BASE: `${CORS_URL}https://www.metaweather.com/api/`,
