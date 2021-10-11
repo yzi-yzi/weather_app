@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './WeatherCardItem.module.scss';
 import { minimalTimeFormat, handleImageError } from 'src/utils';
 import defaultImage from 'src/images/default.svg';
 import { URLS } from 'src/utils/constant';
 import classNames from 'classnames';
+import styles from './WeatherCardItem.module.scss';
 
 function WeatherCardItem({
 	id,
@@ -17,10 +17,16 @@ function WeatherCardItem({
 	return (
 		<div className={classNames(styles.cardItem, { [styles.active]: active })} data-id={id}>
 			<img src={`${URLS.IMAGE}${icon}.svg`} alt="rain" onError={(e) => handleImageError(e, defaultImage)} />
-			<div className={styles.temp}>{minTemp}&#176; - {maxTemp}&#176;</div>
+			<div className={styles.temp}>
+				{minTemp}
+				&#176;
+				-
+				{maxTemp}
+				&#176;
+			</div>
 			<div className={styles.time}>{minimalTimeFormat(date)}</div>
 		</div>
-	)
+	);
 }
 
 WeatherCardItem.propTypes = {
@@ -30,7 +36,7 @@ WeatherCardItem.propTypes = {
 	date: PropTypes.string,
 	active: PropTypes.bool,
 	id: PropTypes.number
-}
+};
 
 WeatherCardItem.defaultProps = {
 	icon: null,
@@ -41,4 +47,4 @@ WeatherCardItem.defaultProps = {
 	id: null
 };
 
-export default WeatherCardItem
+export default WeatherCardItem;

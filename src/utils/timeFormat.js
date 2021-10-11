@@ -5,7 +5,7 @@ import { DAY_LIST, MONTH_LIST, MONTH_LIST_MINIMAL } from './constant';
  * @param {*} d
  * @returns {Boolean}
  */
-const isValidDate = (d) => d instanceof Date && !isNaN(d);
+const isValidDate = (d) => d instanceof Date && !Number.isNaN(d);
 
 /**
  * format time to [date Month]: 09 Nov

@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import styles from './WeatherCardList.module.scss';
 import { URLS } from 'src/utils/constant';
 import { fullTimeFormat, handleImageError } from 'src/utils';
 import defaultImage from 'src/images/default.svg';
 import locationIcon from 'src/images/location.svg';
 import WeatherCardItem from '../WeatherCardItem';
+import styles from './WeatherCardList.module.scss';
 
 function WeatherCardList({
 	city,
@@ -18,7 +18,7 @@ function WeatherCardList({
 		const weatherItem = forecast[index];
 
 		if (!weatherItem) {
-			return {};
+			return;
 		}
 
 		const weatherData = {
@@ -29,10 +29,10 @@ function WeatherCardList({
 			humidity: weatherItem.humidity,
 			predictability: weatherItem.predictability,
 			date: weatherItem.applicable_date
-		}
+		};
 
 		setWeather(weatherData);
-	}
+	};
 
 	const remapItemData = (itemData) => {
 		if (!itemData) {
@@ -46,7 +46,7 @@ function WeatherCardList({
 			maxTemp: Math.ceil(itemData.max_temp),
 			date: itemData.applicable_date
 		};
-	}
+	};
 
 	const handleSeclectDetail = (e) => {
 		const { id } = e.target.dataset;
@@ -55,7 +55,7 @@ function WeatherCardList({
 			return;
 		}
 
-		const selectedIndex = forecast.findIndex(item => item.id === Number(id));
+		const selectedIndex = forecast.findIndex((item) => item.id === Number(id));
 
 		if (id < 0) {
 			return;
@@ -63,7 +63,7 @@ function WeatherCardList({
 
 		setActive(selectedIndex);
 		remapWeatherData(selectedIndex);
-	}
+	};
 
 	useEffect(() => {
 		remapWeatherData(0);
@@ -78,26 +78,43 @@ function WeatherCardList({
 			<div className={styles.time}>{fullTimeFormat(weather.date)}</div>
 			<div className={styles.weatherDetail}>
 				<img src={`${URLS.IMAGE}${weather.icon}.svg`} alt={weather.icon} onError={(e) => handleImageError(e, defaultImage)} />
-				<span className={styles.temp}>{weather.temp}&deg; C</span>
+				<span className={styles.temp}>
+					{weather.temp}
+					&deg; C
+				</span>
 				<span className={styles.state}>{weather.state}</span>
 			</div>
 			<div className={styles.moreDetail}>
 				<div className={styles.item}>
 					<div className={styles.property}>Win Speed</div>
-					<div className={styles.value}>{weather.winSpeed} km/h</div>
+					<div className={styles.value}>
+						{weather.winSpeed}
+						{' '}
+						km/h
+					</div>
 				</div>
 				<div className={styles.item}>
 					<div className={styles.property}>Humidity</div>
-					<div className={styles.value}>{weather.humidity}%</div>
+					<div className={styles.value}>
+						{weather.humidity}
+						%
+					</div>
 				</div>
 				<div className={styles.item}>
 					<div className={styles.property}>Predictability</div>
-					<div className={styles.value}>{weather.predictability}%</div>
+					<div className={styles.value}>
+						{weather.predictability}
+						%
+					</div>
 				</div>
 			</div>
 			{
 				forecast && forecast.length > 0 && (
-					<div className={styles.forecast} onClick={handleSeclectDetail}>
+					<div
+						role="presentation"
+						className={styles.forecast}
+						onClick={handleSeclectDetail}
+					>
 						{
 							forecast.map((item, index) => (
 								<WeatherCardItem key={item.id} {...remapItemData(item)} active={active === index} />
@@ -107,18 +124,17 @@ function WeatherCardList({
 				)
 			}
 		</div>
-	)
+	);
 }
 
 WeatherCardList.propTypes = {
 	city: PropTypes.string,
-	forecast: PropTypes.array
-}
+	forecast: PropTypes.arrayOf(PropTypes.object)
+};
 
 WeatherCardList.defaultProps = {
 	city: null,
 	forecast: []
 };
 
-export default WeatherCardList
-
+export default WeatherCardList;

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import { getWeatherData, getLocationData } from 'src/apis';
 import SearchBox from '../SearchBox';
 import WeatherCardList from '../WeatherCardList';
 import styles from './App.module.scss';
-import { getWeatherData, getLocationData } from 'src/apis';
 
 function App() {
 	const [city, setCity] = useState('');
@@ -10,11 +10,13 @@ function App() {
 
 	const getCityId = async (id) => {
 		const forecastData = await getWeatherData(id);
+		// eslint-disable-next-line camelcase
 		const { consolidated_weather, title } = forecastData;
 
 		setCity(title);
+		// eslint-disable-next-line camelcase
 		setForecast(consolidated_weather || []);
-	}
+	};
 
 	const getUserLocation = () => {
 		navigator.geolocation.getCurrentPosition(async (res) => {
@@ -34,8 +36,8 @@ function App() {
 			getCityId(firstCityId);
 		}, (error) => {
 			console.log(error);
-		})
-	}
+		});
+	};
 
 	useEffect(() => {
 		getUserLocation();
@@ -48,7 +50,7 @@ function App() {
 				forecast && forecast.length > 0 && <WeatherCardList forecast={forecast} city={city} />
 			}
 		</div>
-	)
+	);
 }
 
 export default App;

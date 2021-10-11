@@ -22,4 +22,4 @@ export const getLocationData = (params) => {
 			console.log(error);
 			return [];
 		});
-}
+};

@@ -1,11 +1,11 @@
 import React, { useState, useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import styles from './SearchBox.module.scss';
 import searchIcon from 'src/images/search.svg';
 import { getLocationData } from 'src/apis';
 import { KEYCODE } from 'src/utils/constant';
 import classNames from 'classnames';
 import { useClickOutside } from 'src/hooks';
+import styles from './SearchBox.module.scss';
 
 function SearchBox({ onCityChange, city }) {
 	const blockRef = useRef(null);
@@ -46,80 +46,83 @@ function SearchBox({ onCityChange, city }) {
 	const handleCityClick = (e) => {
 		const { index } = e.target.dataset;
 		handleCitySelected(index);
-	}
+	};
+
+	const handleScrollIntoView = (el) => {
+		if (!el) {
+			return;
+		}
+
+		// avoiding scrollintoview() moving whole page
+		if (el.scrollIntoViewIfNeeded) {
+			el.scrollIntoViewIfNeeded();
+		} else {
+			el.scrollIntoView();
+		}
+	};
+
+	const handleArrowDown = () => {
+		let value = 0;
+
+		if (highlight !== null && highlight !== cityList.length - 1) {
+			value = highlight + 1;
+			setHighlight(highlight + 1);
+		}
+
+		const el = blockRef.current.querySelectorAll('div[data-index]')[value];
+
+		handleScrollIntoView(el);
+
+		setHighlight(value);
+	};
+
+	const handleArrowUp = () => {
+		let value = cityList.length - 1;
+
+		if (highlight) {
+			value = highlight - 1;
+		}
+
+		const el = blockRef.current.querySelectorAll('div[data-index]')[value];
+
+		handleScrollIntoView(el);
+
+		setHighlight(value);
+	};
+
+	const handleEsc = () => {
+		setShow(false);
+	};
+
+	const handleEnter = () => {
+		setShow(false);
+		handleCitySelected(highlight);
+	};
 
 	const handleKeyDown = (e) => {
 		if (e.keyCode === KEYCODE.ESC) {
-			e.preventDefault();
-
-			setShow(false);
+			handleEsc();
 			return;
 		}
 
 		if (e.keyCode === KEYCODE.ENTER && highlight !== null) {
-			e.preventDefault();
-			setShow(false);
-			handleCitySelected(highlight);
+			handleEnter();
 			return;
 		}
 
 		if (e.keyCode === KEYCODE.ARROW_UP) {
-			e.preventDefault();
-
-			let value = cityList.length - 1;
-
-			if (highlight) {
-				value = highlight - 1;
-			}
-
-			const el = blockRef.current.querySelectorAll('div[data-index]')[value];
-
-			if (!el) {
-				return;
-			}
-
-			// avoiding scrollintoview() moving whole page
-			if (el.scrollIntoViewIfNeeded) {
-				el.scrollIntoViewIfNeeded();
-			} else {
-				el.scrollIntoView();
-			}
-
-			setHighlight(value);
-
+			handleArrowUp();
 			return;
 		}
 
 		if (e.keyCode === KEYCODE.ARROW_DOWN) {
-			e.preventDefault();
-
-			let value = 0;
-
-			if (highlight !== null && highlight !== cityList.length - 1) {
-				value = highlight + 1;
-				setHighlight(highlight + 1);
-			}
-
-			const el = blockRef.current.querySelectorAll('div[data-index]')[value];
-
-			if (!el) {
-				return;
-			}
-
-			// avoiding scrollintoview() moving whole page
-			if (el.scrollIntoViewIfNeeded) {
-				el.scrollIntoViewIfNeeded();
-			} else {
-				el.scrollIntoView();
-			}
-
-			setHighlight(value);
+			handleArrowDown();
 		}
 	};
 
 	const hideList = () => {
 		setShow(false);
-	}
+	};
 
 	useEffect(() => {
 		setQuery(city);
@@ -134,20 +137,27 @@ function SearchBox({ onCityChange, city }) {
 					<img src={searchIcon} alt="search" />
 				</div>
 				<input
-					type="text" className={styles.input}
+					type="text"
+					className={styles.input}
 					placeholder="What location are you looking for?"
-					onChange={onSearchChange} value={query}
+					onChange={onSearchChange}
 					onKeyDown={handleKeyDown}
+					value={query}
 				/>
 			</div>
 			{
 				show && cityList && cityList.length > 0 && (
-					<div className={styles.suggest} onClick={handleCityClick}>
+					<div
+						role="presentation"
+						className={styles.suggest}
+						onClick={handleCityClick}
+					>
 						{
 							cityList.map((item, index) => (
 								<div
 									className={classNames(styles.item, { [styles.highlight]: highlight === index })}
-									data-index={index} key={item.woeid}
+									data-index={index}
+									key={item.woeid}
 								>
 									{item.title}
 								</div>
@@ -156,7 +166,7 @@ function SearchBox({ onCityChange, city }) {
 					</div>
 				)
 			}
-		</div >
+		</div>
 	);
 }
 
@@ -168,6 +178,6 @@ SearchBox.propTypes = {
 SearchBox.defaultProps = {
 	city: '',
 	onCityChange: null
-}
+};
 
 export default SearchBox;
