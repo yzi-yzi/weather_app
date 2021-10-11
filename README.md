@@ -27,16 +27,16 @@ See the section about [running tests](https://facebook.github.io/create-react-ap
 Builds the app for production to the `build` folder.\
 It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
+The build is minified and the filenames include the hashes.
 
 ### Deployment
 
-I've already setted up the environment for production deployment via [Netlify](https://www.netlify.com/).
+I've already setted up the environment for production deployment via [Netlify](https://www.netlify.com/).\
 Everytime you push codes to the `main` branch, it will be deployed automatically.
 
 ## Development
 
-If you want to contribute for this project, please take a look at this section.
+If you want to contribute for this project, please take a look at this section.\
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ### Technology
@@ -58,7 +58,7 @@ This is main folder, all codes for production App will be in here.
 - `apis/` handlers for fetching data from api.
 Each file just handle one api, name of the file should be consistent with what they are doing.
 
-- `components/` this is place to store the components, each component will includes 4 files `.jsx` `.module.css` `.test.js`.
+- `components/` this is place to store the components, each component will includes 4 files `.jsx` `.module.css` `.test.js`.\
 If you want to create a new component, please following the rules:
 1. Name of the component's folder should be Capitalize.
 2. Name of the `.jsx` `.module.scss` `.test.js` files should be the same as Folder.
