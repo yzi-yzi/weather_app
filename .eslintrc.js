@@ -2,7 +2,8 @@ module.exports = {
 	env: {
 		browser: true,
 		es2021: true,
-		node: true
+		node: true,
+		'jest/globals': true
 	},
 	extends: [
 		'airbnb', 'airbnb/hooks'
@@ -15,7 +16,8 @@ module.exports = {
 		sourceType: 'module'
 	},
 	plugins: [
-		'react'
+		'react',
+		'jest'
 	],
 	rules: {
 		indent: [
@@ -38,6 +40,7 @@ module.exports = {
 			'always'
 		],
 		radix: 'off',
+		'no-restricted-globals': 'off',
 		'global-require': 'off',
 		'comma-dangle': ['error', 'never'],
 		'no-tabs': ['error', { allowIndentationTabs: true }],

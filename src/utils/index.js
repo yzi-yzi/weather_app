@@ -1,2 +1,2 @@
 export { handleImageError } from './handleImageError';
-export { minimalTimeFormat, fullTimeFormat } from './timeFormat';
+export { isValidDate, minimalTimeFormat, fullTimeFormat } from './timeFormat';
