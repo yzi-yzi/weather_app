@@ -88,7 +88,6 @@ function SearchBox({ onCityChange, city }) {
 
 		if (highlight !== null && highlight !== cityList.length - 1) {
 			value = highlight + 1;
-			setHighlight(highlight + 1);
 		}
 
 		const el = blockRef.current.querySelectorAll('div[data-index]')[value];
