@@ -175,6 +175,7 @@ function SearchBox({ onCityChange, city }) {
 			{
 				show && isCityAvailable() && (
 					<div
+						data-testid="suggest-list"
 						role="presentation"
 						className={styles.suggest}
 						onClick={handleCityClick}
@@ -185,6 +186,7 @@ function SearchBox({ onCityChange, city }) {
 									className={classNames(styles.item, { [styles.highlight]: highlight === index })}
 									data-index={index}
 									key={item.woeid}
+									data-testid={`suggest-item-${index}`}
 								>
 									{item.title}
 								</div>
