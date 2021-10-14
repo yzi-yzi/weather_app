@@ -24,7 +24,7 @@ function WeatherCardList({
 		const weatherData = {
 			icon: weatherItem.weather_state_abbr,
 			state: weatherItem.weather_state_name,
-			temp: Math.ceil(weatherItem.the_temp),
+			temp: Math.ceil(weatherItem.max_temp),
 			winSpeed: Math.ceil(weatherItem.wind_speed),
 			humidity: weatherItem.humidity,
 			predictability: weatherItem.predictability,
