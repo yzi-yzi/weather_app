@@ -66,6 +66,7 @@ function WeatherCardList({
 	};
 
 	useEffect(() => {
+		setActive(0);
 		remapWeatherData(0);
 	}, [forecast]);
 
