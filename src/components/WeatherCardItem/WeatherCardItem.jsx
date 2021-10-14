@@ -15,7 +15,11 @@ function WeatherCardItem({
 	active
 }) {
 	return (
-		<div className={classNames(styles.cardItem, { [styles.active]: active })} data-id={id}>
+		<div
+			className={classNames(styles.cardItem, { [styles.active]: active })}
+			data-id={id}
+			data-testid={`card-item-${id}`}
+		>
 			<img src={`${URLS.IMAGE}${icon}.svg`} alt="rain" onError={(e) => handleImageError(e, defaultImage)} />
 			<div className={styles.temp}>
 				{minTemp}

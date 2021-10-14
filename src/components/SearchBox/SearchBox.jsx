@@ -8,6 +8,7 @@ import { KEYCODE } from 'src/utils/constant';
 import classNames from 'classnames';
 import { useClickOutside } from 'src/hooks';
 import { debounce } from 'lodash';
+import spinnerIcon from 'src/images/spinner.svg';
 import styles from './SearchBox.module.scss';
 
 function SearchBox({ onCityChange, city }) {
@@ -17,6 +18,7 @@ function SearchBox({ onCityChange, city }) {
 	const [query, setQuery] = useState('');
 	const [highlight, setHighlight] = useState(null);
 	const [cityList, setCityList] = useState(null);
+	const [loading, setLoading] = useState(false);
 
 	const isCityAvailable = () => cityList && cityList.length !== 0;
 
@@ -44,6 +46,7 @@ function SearchBox({ onCityChange, city }) {
 
 		setCityList(locationData);
 		setHighlight(null);
+		setLoading(false);
 	};
 
 	const debounceFetch = useCallback(debounce((nextValue) => fetchLocation(nextValue), 200), []);
@@ -55,6 +58,7 @@ function SearchBox({ onCityChange, city }) {
 			return;
 		}
 
+		setLoading(true);
 		setShow(true);
 		setQuery(value);
 
@@ -161,7 +165,7 @@ function SearchBox({ onCityChange, city }) {
 		<div className={styles.searchBox} ref={blockRef}>
 			<div className={styles.box}>
 				<div className={styles.icon}>
-					<img src={searchIcon} alt="search" />
+					<img src={loading ? spinnerIcon : searchIcon} alt="search" />
 				</div>
 				<input
 					type="text"

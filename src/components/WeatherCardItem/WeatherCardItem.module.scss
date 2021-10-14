@@ -17,6 +17,10 @@
 
 	&.active {
 		background-color: $bg-color-light;
+
+		.temp {
+			font-weight: bold;
+		}
 	}
 
 	> * {

@@ -48,7 +48,7 @@ function WeatherCardList({
 		};
 	};
 
-	const handleSeclectDetail = (e) => {
+	const handleSelectDetail = (e) => {
 		const { id } = e.target.dataset;
 
 		if (id === undefined) {
@@ -70,7 +70,7 @@ function WeatherCardList({
 	}, [forecast]);
 
 	return (
-		<div className={styles.cardList}>
+		<div className={styles.cardList} data-testid="card-list-container">
 			<div className={styles.location}>
 				<img src={locationIcon} alt="location" />
 				{city}
@@ -82,7 +82,7 @@ function WeatherCardList({
 					{weather.temp}
 					&deg; C
 				</span>
-				<span className={styles.state}>{weather.state}</span>
+				<span className={styles.state} data-testid="weather-state">{weather.state}</span>
 			</div>
 			<div className={styles.moreDetail}>
 				<div className={styles.item}>
@@ -113,7 +113,7 @@ function WeatherCardList({
 					<div
 						role="presentation"
 						className={styles.forecast}
-						onClick={handleSeclectDetail}
+						onClick={handleSelectDetail}
 					>
 						{
 							forecast.map((item, index) => (
